@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Cute+Font&display=swap');
+
+.menu {
+    top: 20%;
+    left: 0;
+    position: fixed;
+    width: 20%;
+    min-height: 10%;
+
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    background-color: cornflowerblue;
+    border-right: 3px solid black;
+    font-family: 'Cute Font', cursive;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.menu_category {
+    font-size: 50px;
+}
+
+.menu_category > form > button{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    
+    font-family: 'Cute Font', cursive;
+    font-size: 50px;
+}
