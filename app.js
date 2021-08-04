@@ -83,7 +83,7 @@ function URL_Censor(ip, url) {
   }
 
   for(let i = 0; i < FORBIDEN_URL_WORD_LIST.length; i++){
-    if(url.includes(FORBIDEN_URL_WORD_LIST[i])){
+    if(url.toLowerCase().includes(FORBIDEN_URL_WORD_LIST[i])){
       IS_FUCKING_HACKER = true;
       break;
     }
