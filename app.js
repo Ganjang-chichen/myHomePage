@@ -3,7 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
 var ipfilter = require('express-ipfilter');
+var fs = require('fs');
+
+var moment = require('moment');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -20,11 +24,25 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-ban_ip_list = [
+const BAN_LIST_PATH = path.join(__dirname, 'public/json/ban_list.json');
+const BAN_WORD_PATH = path.join(__dirname, 'public/json/ban_word.json');
+const FORBIDEN_URL_WORD_LIST = JSON.parse(fs.readFileSync(BAN_WORD_PATH).toString()).ban_word;
 
-];
-
-app.use(ipfilter.IpFilter(ban_ip_list));
+if(!fs.existsSync(BAN_LIST_PATH)){
+  let ban_doc = {
+    "ban_ip_list" : [],
+    "ban_info" : [],
+    "404_log" : []
+  }
+  fs.writeFileSync(BAN_LIST_PATH, JSON.stringify(ban_doc));
+}else {
+  let ban_data = fs.readFileSync(BAN_LIST_PATH);
+  let banJSON = JSON.parse(ban_data.toString());
+  let ban_ip_list = banJSON.ban_ip_list;
+  console.log("ban list");
+  console.log(ban_ip_list);
+  app.use(ipfilter.IpFilter(ban_ip_list));
+}
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -32,7 +50,11 @@ app.use('/users', usersRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   const ip = req.headers['x-forwarded-for'] ||  req.connection.remoteAddress;
-  console.log(ip);
+  console.log(`case 0 - ${ip}`);
+  console.log(req.params);
+  console.log(req.query);
+  console.log(req.url);
+  URL_Censor(ip, req.url);
   next(createError(404));
 });
 
@@ -48,3 +70,34 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+function URL_Censor(ip, url) {
+  let update_ban_data = fs.readFileSync(BAN_LIST_PATH);
+  let update_banJSON = JSON.parse(update_ban_data.toString());
+  IS_FUCKING_HACKER = false;
+
+  let unknown_data = {
+    "ip" : ip,
+    "time" : moment().format('YYYY-MM-DD HH:mm:ss'),
+    "url" : url
+  }
+
+  for(let i = 0; i < FORBIDEN_URL_WORD_LIST.length; i++){
+    if(url.includes(FORBIDEN_URL_WORD_LIST[i])){
+      IS_FUCKING_HACKER = true;
+      break;
+    }
+  }
+  if(IS_FUCKING_HACKER){
+
+    update_banJSON.ban_ip_list.push(ip);
+    update_banJSON.ban_info.push(unknown_data);
+
+    fs.writeFileSync(BAN_LIST_PATH, JSON.stringify(update_banJSON));
+  }else {
+    
+    update_banJSON['404_log'].push(unknown_data);
+
+    fs.writeFileSync(BAN_LIST_PATH, JSON.stringify(update_banJSON));
+  }
+}
