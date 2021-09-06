@@ -40,8 +40,8 @@ if(!fs.existsSync(BAN_LIST_PATH)){
   let ban_data = fs.readFileSync(BAN_LIST_PATH);
   let banJSON = JSON.parse(ban_data.toString());
   let ban_ip_list = banJSON.ban_ip_list;
-  console.log("ban list");
-  console.log(ban_ip_list);
+  // console.log("ban list");
+  // console.log(ban_ip_list);
   app.use(ipfilter.IpFilter(ban_ip_list));
 }
 
