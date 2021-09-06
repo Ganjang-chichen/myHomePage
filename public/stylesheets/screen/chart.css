@@ -1,0 +1,12 @@
+.chart_subj{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.chart_subj > img{
+    width: 53px;
+    height: 53px;
+    border-radius: 50%;
+    border: black 1px solid;
+}

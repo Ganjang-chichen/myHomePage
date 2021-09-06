@@ -36,10 +36,10 @@ document.addEventListener('mousemove', (e) => {
 var game = new Phaser.Game(config);
 
 function preload (){
-    this.load.image('mushroom', 'images/mushroom100.png');
-    this.load.image('pinkbeen', 'images/pinkbeen100.png');
-    this.load.image('rock', 'images/rock100.png');
-    this.load.image('unbrella', 'images/unbrella.png');
+    this.load.image('mushroom', 'images/raindrop/mushroom100.png');
+    this.load.image('pinkbeen', 'images/raindrop/pinkbeen100.png');
+    this.load.image('rock', 'images/raindrop/rock100.png');
+    this.load.image('unbrella', 'images/raindrop/unbrella.png');
     
 }
 

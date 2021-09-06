@@ -11,6 +11,7 @@ var moment = require('moment');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var learnRouter = require('./routes/learn')
 
 var app = express();
 
@@ -46,6 +47,7 @@ if(!fs.existsSync(BAN_LIST_PATH)){
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/learn', learnRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

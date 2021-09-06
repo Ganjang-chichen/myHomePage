@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stylesheets/style.css">
+
+</head>
+<body>
+    <div class="learn_container">
+        <div class="learn_titles">
+            
+        </div>
+        <div class="learn_subtitles">
+
+        </div>
+        <div class="learn_page">
+
+        </div>
+        
+        <div class="learn_input">
+
+        </div>
+        <div class="learn_page_input">
+            <button onclick="modify_IDX();">new IDX</button>
+            <button onclick="modify_page();">p</button>
+        </div>
+
+        <div class="learn_nextpage">
+            <button onclick="mv_page(0);">◀</button>
+            <div class="learn_nextpage_num">0/0</div>
+            <button onclick="mv_page(1);">▶</button>
+        </div>
+        
+    </div>
+    
+    <script>
+        var parseData = JSON.parse(`<%= JSON.stringify(data) %>`.replaceAll('&#34;', '\"').replaceAll('\n', `\\n`).replaceAll('\r', ''));
+        console.log(parseData);
+        var CURRENT_TITLE = JSON.parse(`<%= JSON.stringify(t) %>`.replaceAll('&#34;', '\"').replaceAll('\n', `\\n`)).replaceAll('\r', '');
+        var CURRENT_SUBTITLE = JSON.parse(`<%= JSON.stringify(s) %>`.replaceAll('&#34;', '\"').replaceAll('\n', `\\n`).replaceAll('\r', ''));
+        var CURRENT_PAGENUM = JSON.parse(`<%= JSON.stringify(p) %>`.replaceAll('&#34;', '\"').replaceAll('\n', `\\n`).replaceAll('\r', ''));
+    </script>
+    <script type="text/javascript" src="./javascripts/learn/show_page.js"></script>
+    <script>
+
+    </script>
+</body>
+</html>

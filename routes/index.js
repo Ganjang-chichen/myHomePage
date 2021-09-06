@@ -14,4 +14,11 @@ router.get('/raindrop', function(req, res, next) {
   res.render('raindrop', { title: 'Express' });
 });
 
+router.get('/chart', function(req, res, next) {
+  const ip = req.headers['x-forwarded-for'] ||  req.connection.remoteAddress;
+  console.log(`case 3 - ${ip}`);
+  res.render('chart', { title: 'Express' });
+});
+
+
 module.exports = router;
