@@ -37,6 +37,7 @@ router.post('/modi_page', (req, res, next) => {
 
         if(req.body.isNew){
             jsonData[title][subtitle]["post"].push({info : text});
+            pagenum++;
         }else{
             jsonData[title][subtitle]["post"][pagenum]["info"] = text;
         }
