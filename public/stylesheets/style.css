@@ -6,7 +6,9 @@
 @import "./component/reset.css";
 @import "./component/menu.css";
 @import "./component/hidden.css";
+@import "./component/rotateColor.css";
 
+/*screen*/
 @import "./screen/chart.css";
 @import "./screen/learn.css";
 

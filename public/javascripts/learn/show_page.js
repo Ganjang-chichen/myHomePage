@@ -51,10 +51,12 @@ function open_page(title, subtitle, page) {
   MAX_page_num = parseData[title][subtitle]["post"].length - 1;
   page_num.innerHTML = `${page}/${MAX_page_num}`;
   
+  show_selected();
 }
 
 // 과목 목차 리스트
-function add_subtitle(title) {
+function add_subtitle(title, IsBoot) {
+    CURRENT_TITLE = title;
     let keys = Object.keys(parseData[title]);
 
     let html = "";
@@ -65,10 +67,14 @@ function add_subtitle(title) {
   
     subtitles.innerHTML = html;
 
-    if(IsNotNone(CURRENT_TITLE) && IsNotNone(CURRENT_SUBTITLE) && IsNotNone(CURRENT_PAGENUM)){
-        open_page(CURRENT_TITLE);
+    if(IsNotNone(CURRENT_TITLE) 
+      && IsNotNone(CURRENT_SUBTITLE) 
+      && IsNotNone(CURRENT_PAGENUM)
+      && IsBoot){
+      open_page(CURRENT_TITLE, CURRENT_SUBTITLE, CURRENT_PAGENUM);  
+      
     }else {
-        open_page(CURRENT_TITLE, CURRENT_SUBTITLE, CURRENT_PAGENUM);    
+      open_page(CURRENT_TITLE);  
     }
 }
 
@@ -83,11 +89,10 @@ function add_titles() {
 
   titles.innerHTML = html;
   if(IsNotNone(CURRENT_TITLE) && IsNotNone(CURRENT_SUBTITLE) && IsNotNone(CURRENT_PAGENUM)){
-    1;
   }else {
     CURRENT_TITLE = keys[0];
   }
-  add_subtitle(CURRENT_TITLE);
+  add_subtitle(CURRENT_TITLE, true);
   
 }
 
@@ -137,4 +142,34 @@ function mv_page(location) {
     }else if(location === 1 && CURRENT_PAGENUM < MAX_page_num) {
         open_page(CURRENT_TITLE, CURRENT_SUBTITLE, CURRENT_PAGENUM +1);
     }
+}
+
+// 현재 클릭상태 표시
+function show_selected() {
+  let title_list = document.querySelectorAll(".learn_title");
+  let subtitle_list = document.querySelectorAll(".learn_subtitle");
+
+  for(let i = 0; i < title_list.length; i++) {
+    if(title_list[i].classList.contains('rotateColor')) {
+      title_list[i].classList.remove('rotateColor');
+    }
+    if(title_list[i].innerText === CURRENT_TITLE) {
+      title_list[i].classList.add('rotateColor');
+    }
+  }
+
+  for(let i = 0; i < subtitle_list.length; i++) {
+    if(subtitle_list[i].classList.contains('rotateColor')) {
+      subtitle_list[i].classList.remove('rotateColor');
+    }
+    if(subtitle_list[i].innerText === CURRENT_SUBTITLE) {
+      subtitle_list[i].classList.add('rotateColor');
+    }
+  }
+}
+
+show_selected();
+
+function stateprint() {
+  console.log(`t : ${CURRENT_TITLE}\ns : ${CURRENT_SUBTITLE}\np : ${CURRENT_PAGENUM}`);
 }

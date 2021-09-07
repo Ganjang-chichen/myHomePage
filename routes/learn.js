@@ -10,7 +10,7 @@ let pagenum = "";
 router.get('/', function(req, res, next) {
     var jsonFile = fs.readFileSync("./public/json/learn_page_data.json");
     var jsonData = JSON.parse(jsonFile);
-    console.log(jsonData)
+    
     res.render('learn', {data : jsonData, t : title, s : subtitle, p : pagenum});
     
 });
