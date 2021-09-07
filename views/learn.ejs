@@ -38,14 +38,14 @@
     
     <script>
 
-function convert_special(str) {
+        function convert_special(str) {
             return str
                 .replaceAll("&#34;", '\"')
                 .replaceAll("&#39;", "\'")
                 .replaceAll("\n", `\\n`)
                 .replaceAll("\r", ``);
         }
-
+        
         var parseData = JSON.parse(convert_special(`<%= JSON.stringify(data) %>`));
         
         var CURRENT_TITLE = JSON.parse(convert_special(`<%= JSON.stringify(t) %>`));

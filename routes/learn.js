@@ -29,7 +29,7 @@ router.post('/modi_page', (req, res, next) => {
 
         let text = req.body.learn_modify.toString();
         
-        text = text.replace(/\\/gi, "\\\\").replace(/\"/gi, "\\\"");
+        text = text.replace(/\\/gi, "\\\\").replace(/\"/gi, "\\\"").replace(/`/gi, "");
         
 
         var jsonFile = fs.readFileSync("./public/json/learn_page_data.json");
