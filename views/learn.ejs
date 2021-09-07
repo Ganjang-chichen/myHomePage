@@ -37,11 +37,20 @@
     </div>
     
     <script>
-        var parseData = JSON.parse(`<%= JSON.stringify(data) %>`.replaceAll('&#34;', '\"').replaceAll('\n', `\\n`).replaceAll('\r', ''));
-        console.log(parseData);
-        var CURRENT_TITLE = JSON.parse(`<%= JSON.stringify(t) %>`.replaceAll('&#34;', '\"').replaceAll('\n', `\\n`)).replaceAll('\r', '');
-        var CURRENT_SUBTITLE = JSON.parse(`<%= JSON.stringify(s) %>`.replaceAll('&#34;', '\"').replaceAll('\n', `\\n`).replaceAll('\r', ''));
-        var CURRENT_PAGENUM = JSON.parse(`<%= JSON.stringify(p) %>`.replaceAll('&#34;', '\"').replaceAll('\n', `\\n`).replaceAll('\r', ''));
+
+function convert_special(str) {
+            return str
+                .replaceAll("&#34;", '\"')
+                .replaceAll("&#39;", "\'")
+                .replaceAll("\n", `\\n`)
+                .replaceAll("\r", ``);
+        }
+
+        var parseData = JSON.parse(convert_special(`<%= JSON.stringify(data) %>`));
+        
+        var CURRENT_TITLE = JSON.parse(convert_special(`<%= JSON.stringify(t) %>`));
+        var CURRENT_SUBTITLE = JSON.parse(convert_special(`<%= JSON.stringify(s) %>`));
+        var CURRENT_PAGENUM = JSON.parse(convert_special(`<%= JSON.stringify(p) %>`));
     </script>
     <script type="text/javascript" src="./javascripts/learn/show_page.js"></script>
     <script>
