@@ -121,7 +121,7 @@ function new_list(name, id, start, end) {
     `
 
     temp_que.querySelector(".video_que_delete").addEventListener('click', (e) => {
-        let p = e.target.parentNode.parentNode;
+        let p = e.target.parentNode;
         queBox.removeChild(p);
     });
 
