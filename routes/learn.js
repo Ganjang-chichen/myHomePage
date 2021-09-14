@@ -8,7 +8,7 @@ let pagenum = "";
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    var jsonFile = fs.readFileSync("./public/json/learn_page_data.json");
+    var jsonFile = fs.readFileSync("./public/json/learn_page_data.text");
     var jsonData = JSON.parse(jsonFile);
     
     res.render('learn', {data : jsonData, t : title, s : subtitle, p : pagenum});
@@ -32,7 +32,7 @@ router.post('/modi_page', (req, res, next) => {
         text = text.replace(/\\/gi, "\\\\").replace(/\"/gi, "\\\"").replace(/`/gi, "");
         
 
-        var jsonFile = fs.readFileSync("./public/json/learn_page_data.json");
+        var jsonFile = fs.readFileSync("./public/json/learn_page_data.text");
         var jsonData = JSON.parse(jsonFile);
 
         if(req.body.isNew){
@@ -41,7 +41,7 @@ router.post('/modi_page', (req, res, next) => {
         }else{
             jsonData[title][subtitle]["post"][pagenum]["info"] = text;
         }
-        fs.writeFileSync("./public/json/learn_page_data.json", JSON.stringify(jsonData));
+        fs.writeFileSync("./public/json/learn_page_data.text", JSON.stringify(jsonData));
 
         res.redirect('/learn');        
     }
@@ -62,7 +62,7 @@ router.post('/modi_IDX', (req, res, next)=> {
         let mode = req.body.IDXTYPE.toString();
         let newIDX = req.body.learn_modify.toString();
 
-        var jsonFile = fs.readFileSync("./public/json/learn_page_data.json");
+        var jsonFile = fs.readFileSync("./public/json/learn_page_data.text");
         var jsonData = JSON.parse(jsonFile);
 
         if(mode === "새 과목") {
@@ -81,7 +81,7 @@ router.post('/modi_IDX', (req, res, next)=> {
             }
         }
         
-        fs.writeFileSync("./public/json/learn_page_data.json", JSON.stringify(jsonData));
+        fs.writeFileSync("./public/json/learn_page_data.text", JSON.stringify(jsonData));
 
         res.redirect('/learn');        
     }

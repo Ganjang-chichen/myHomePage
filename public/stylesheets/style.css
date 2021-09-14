@@ -11,7 +11,7 @@
 /*screen*/
 @import "./screen/chart.css";
 @import "./screen/learn.css";
-
+@import "./screen/video.css";
 
 body {
   width: 100%;

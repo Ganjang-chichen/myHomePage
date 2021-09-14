@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./stylesheets/style.css">
+</head>
+<body>
+    
+    <div class="video_container">
+        <div class="video_title">
+            <div>유튜브 동영상 플레이어</div>
+
+            <div class="video_timerBox">
+                <input type="text" placeholder="시간 입력(00:00)" class="video_timer">
+                <button class="video_timer_start" onclick="timer()">타이머 시작</button>
+                <button class="video_timer_pause" onclick="pause_timer()">일시 정지</button>
+            </div>
+
+        </div>
+        <div class="video_controler">
+            <button onclick="start_play();">재생 시작</button>
+            <label for="video_rand" >랜덤</label>
+            <input type="checkbox" name="video_rand" class="video_rand">
+            <button onclick="download_playlist()">플레이 리스트 저장</button>
+            <div>플래이 리스트 가져오기</div>
+            <input type="file" accept=".txt" class="playList_preset">
+        </div>
+        
+        <div id="player"></div>
+
+        <div class="video_ques">
+            <div class="video_que">
+                <div>
+                    <div class="video_que_info">
+                        <div>영상 상세</div>
+                        <input type="text" class="video_conf">
+                    </div>
+                    <div class="video_que_conf">
+                        <input type="text" class="video_id" placeholder="유튜브 링크">
+                        <input type="text" class="video_start" placeholder="시작 시간">
+                        <input type="text" class="video_end" placeholder="종료 시간">
+                    </div>
+                </div>
+                <button class="video_que_delete">x</button>
+                
+            </div>
+        </div>
+        <button class="video_add_new" onclick="new_list()">+</button>
+    </div>
+    
+    <script src="./javascripts/customPlayer/video_controler.js"></script>
+    <script src="./javascripts/customPlayer/movieControl.js"></script>
+    <script src="./javascripts/customPlayer/timer.js"></script>
+</body>
+</html>

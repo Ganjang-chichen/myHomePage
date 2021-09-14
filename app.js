@@ -11,7 +11,9 @@ var moment = require('moment');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var learnRouter = require('./routes/learn')
+var learnRouter = require('./routes/learn');
+var customPlayerRouter = require('./routes/custom_youtube_player');
+var playListIDXRouter = require('./routes/playListIDX');
 
 var app = express();
 
@@ -48,6 +50,8 @@ if(!fs.existsSync(BAN_LIST_PATH)){
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/learn', learnRouter);
+app.use('/customPlayer', customPlayerRouter);
+app.use('/playListIDX', playListIDXRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

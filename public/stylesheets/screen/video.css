@@ -1,0 +1,134 @@
+
+.video_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.video_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    height: 70px;
+    background-color: #c4302b;
+
+    color: white;
+    font-weight: bold;
+}
+
+.video_title > div:first-child {
+    border: white 2px solid;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.video_timerBox {
+    margin: 5px;
+}
+.video_timerBox input {
+    border: none;
+    border-bottom: solid white 3px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.video_timerBox input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.video_timerBox button{
+    border: snow solid 2px;
+    border-radius: 3px;
+    color: snow;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+
+.video_que_info {
+    display: flex;
+    justify-content: space-around;
+    margin: 5px;
+}
+
+.video_que_info > input {
+    width: 70%;
+}
+
+.video_que {
+    display: flex;
+    border: solid #c4302b 2px;
+    border-radius: 3px;
+    padding: 5px;
+    margin: 10px;
+}
+
+.video_que_conf {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5px;
+}
+
+.video_id {
+    width: 50%;
+}
+
+.video_start,
+.video_end {
+    width: 15%;
+}
+
+.video_controler {
+    margin: 10px;
+}
+
+.video_controler div {
+    margin: 5px;
+}
+
+.video_add_new {
+    height: 50px;
+    border: solid rgb(255, 179, 55) 2px;
+    border-radius: 3px;
+}
+
+/*
+gradient animation code resource
+https://codepen.io/mike-schultz/pen/NgQvGO
+*/
+.video_playing {
+    border: none;
+    --borderWidth: 3px;
+    background: #FFFFFF;
+    position: relative;
+    border-radius: var(--borderWidth);
+}
+.video_playing:after {
+    content: '';
+    position: absolute;
+    top: calc(-1 * var(--borderWidth));
+    left: calc(-1 * var(--borderWidth));
+    height: calc(100% + var(--borderWidth) * 2);
+    width: calc(100% + var(--borderWidth) * 2);
+    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+    border-radius: calc(2 * var(--borderWidth));
+    z-index: -1;
+    animation: animatedgradient 3s ease alternate infinite;
+    background-size: 300% 300%;
+}
+
+@keyframes animatedgradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
