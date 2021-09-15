@@ -117,6 +117,7 @@ function new_list(name, id, start, end) {
                 <input type="text" class="video_end" placeholder="종료 시간" value=${end}>
             </div>
         </div>
+        <button class="video_que_start">▶</button>
         <button class="video_que_delete">x</button>
     `
     
